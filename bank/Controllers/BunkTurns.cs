@@ -8,20 +8,24 @@ namespace bank.Controllers
     [ApiController]
     public class BunkTurns : ControllerBase
     {
-        public static List<Turn> turns = new List<Turn>();
+        private readonly DataContext _dataContext;
+        public BunkTurns(DataContext context)
+        {
+            _dataContext = context;
+        }
 
         // GET: api/<BunkTurns>
         [HttpGet]
         public List<Turn> Get()
         {
-            return turns;
+            return _dataContext.Turns;
         }
 
         // GET api/<BunkTurns>/5
         [HttpGet("{start}")]
         public List<Turn> Get(DateTime start)
         {
-            List<Turn> t=turns.FindAll((e)=>e.Start.Month == start.Month);
+            List<Turn> t= _dataContext.Turns.FindAll((e)=>e.Start.Month == start.Month);
             return t;
         }
 
@@ -29,14 +33,14 @@ namespace bank.Controllers
         [HttpPost]
         public void Post([FromBody] Turn value)
         {
-              turns.Add(value);
+            _dataContext.Turns.Add(value);
         }
 
         // PUT api/<BunkTurns>/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Turn value)
         {
-           Turn t=turns.Find((e)=>e.Id == id);
+           Turn t= _dataContext.Turns.Find((e)=>e.Id == id);
             if (t == null)
             {
                 return NotFound();
@@ -51,12 +55,12 @@ namespace bank.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            Turn t = turns.Find((e) => e.Id == id);
+            Turn t = _dataContext.Turns.Find((e) => e.Id == id);
             if (t == null)
             {
                 return NotFound(t);
             }
-            turns.Remove(t);
+            _dataContext.Turns.Remove(t);
             return Ok(t);
         }
     }

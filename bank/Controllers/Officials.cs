@@ -8,19 +8,23 @@ namespace bank.Controllers
     [ApiController]
     public class Officials : ControllerBase
     {
-        public static List<Official> officials = new List<Official>();
+        private readonly DataContext _dataContext;
+        public Officials(DataContext context)
+        {
+            _dataContext = context;
+        }
         // GET: api/<Officials>
         [HttpGet]
         public List<Official> Get()
         {
-            return officials;
+            return _dataContext.Officials;
         }
 
         // GET api/<Officials>/5
         [HttpGet("{id}")]
         public Official Get(int id)
         {
-            Official o=officials.Find(x => x.Id == id);
+            Official o= _dataContext.Officials.Find(x => x.Id == id);
             return o;
         }
 
@@ -28,7 +32,7 @@ namespace bank.Controllers
         [HttpPost]
         public void Post([FromBody] Official value)
         {
-            officials.Add(value);
+            _dataContext.Officials.Add(value);
 
         }
 
@@ -36,7 +40,7 @@ namespace bank.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] string value)
         {
-            Official o=officials.Find(x => x.Id == id);
+            Official o = _dataContext.Officials.Find(x => x.Id == id);
             if (o == null)
             {
                 return NotFound();
@@ -49,12 +53,12 @@ namespace bank.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            Official o = officials.Find(x => x.Id == id);
+            Official o = _dataContext.Officials.Find(x => x.Id == id);
             if (o == null)
             {
                 return NotFound(id);
             }
-            officials.Remove(o);
+            _dataContext.Officials.Remove(o);
             return Ok(o);
 
         }
