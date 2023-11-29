@@ -25,8 +25,8 @@ namespace bank.Controllers
         [HttpGet("{start}")]
         public List<Turn> Get(DateTime start)
         {
-            List<Turn> t= _dataContext.Turns.FindAll((e)=>e.Start.Month == start.Month);
-            return t;
+            List<Turn> tmp= _dataContext.Turns.FindAll((e)=>e.Start.Month == start.Month);
+            return tmp;
         }
 
         // POST api/<BunkTurns>
