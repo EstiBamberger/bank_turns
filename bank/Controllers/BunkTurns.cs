@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Solid.Core.Enteties;
+using Solid.Core.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,60 +10,45 @@ namespace bank.Controllers
     [ApiController]
     public class BunkTurns : ControllerBase
     {
-        private readonly DataContext _dataContext;
-        public BunkTurns(DataContext context)
+        private readonly ITurnsServices _turnsServices;
+        public BunkTurns(ITurnsServices turnsServices)
         {
-            _dataContext = context;
+            _turnsServices = turnsServices;
         }
 
         // GET: api/<BunkTurns>
         [HttpGet]
-        public List<Turn> Get()
+        public ActionResult Get()
         {
-            return _dataContext.Turns;
+            return Ok(_turnsServices.GetTurns());
         }
 
         // GET api/<BunkTurns>/5
         [HttpGet("{start}")]
-        public List<Turn> Get(DateTime start)
+        public ActionResult Get(DateTime start)
         {
-            List<Turn> tmp= _dataContext.Turns.FindAll((e)=>e.Start.Month == start.Month);
-            return tmp;
+            return Ok(_turnsServices.GetByStart(start));
         }
 
         // POST api/<BunkTurns>
         [HttpPost]
         public void Post([FromBody] Turn value)
         {
-            _dataContext.Turns.Add(value);
+            _turnsServices.AddTurn(value);
         }
 
         // PUT api/<BunkTurns>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Turn value)
+        public void Put(int id, [FromBody] Turn value)
         {
-           Turn t= _dataContext.Turns.Find((e)=>e.Id == id);
-            if (t == null)
-            {
-                return NotFound();
-            }
-            t.Start = value.Start;
-            t.Cust = value.Cust;
-            t.Official = value.Official;
-            return Ok(t);
+           _turnsServices.UpdateTurn(id, value);
         }
 
         // DELETE api/<BunkTurns>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public void Delete(int id)
         {
-            Turn t = _dataContext.Turns.Find((e) => e.Id == id);
-            if (t == null)
-            {
-                return NotFound(t);
-            }
-            _dataContext.Turns.Remove(t);
-            return Ok(t);
+           _turnsServices.DeleteTurn(id);
         }
     }
 }

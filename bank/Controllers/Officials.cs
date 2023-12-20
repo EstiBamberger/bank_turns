@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Solid.Core.Enteties;
+using Solid.Core.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,58 +10,45 @@ namespace bank.Controllers
     [ApiController]
     public class Officials : ControllerBase
     {
-        private readonly DataContext _dataContext;
-        public Officials(DataContext context)
+        private readonly IOfficialsServices _officialsService;
+        public Officials(IOfficialsServices officialsService)
         {
-            _dataContext = context;
+            _officialsService = officialsService;
         }
         // GET: api/<Officials>
         [HttpGet]
-        public List<Official> Get()
+        public ActionResult Get()
         {
-            return _dataContext.Officials;
+            return Ok(_officialsService.GetOfficials());
         }
 
         // GET api/<Officials>/5
         [HttpGet("{id}")]
-        public Official Get(int id)
+        public ActionResult Get(int id)
         {
-            Official o= _dataContext.Officials.Find(x => x.Id == id);
-            return o;
+            return Ok(_officialsService.GetById(id));
         }
 
         // POST api/<Officials>
         [HttpPost]
         public void Post([FromBody] Official value)
         {
-            _dataContext.Officials.Add(value);
+            _officialsService.AddOfficial(value);
 
         }
 
         // PUT api/<Officials>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Official value)
         {
-            Official o = _dataContext.Officials.Find(x => x.Id == id);
-            if (o == null)
-            {
-                return NotFound();
-            }
-            o.Name = value;
-            return Ok(o);
+            _officialsService.UpdateOfficial(id, value);
         }
 
         // DELETE api/<Officials>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public void Delete(int id)
         {
-            Official o = _dataContext.Officials.Find(x => x.Id == id);
-            if (o == null)
-            {
-                return NotFound(id);
-            }
-            _dataContext.Officials.Remove(o);
-            return Ok(o);
+            _officialsService.DeleteOfficial(id);
 
         }
     }

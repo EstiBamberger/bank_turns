@@ -1,0 +1,14 @@
+C:\Users\USER\Desktop\.net\bank\Solid.Core\bin\Debug\net6.0\Solid.Core.exe
+C:\Users\USER\Desktop\.net\bank\Solid.Core\bin\Debug\net6.0\Solid.Core.deps.json
+C:\Users\USER\Desktop\.net\bank\Solid.Core\bin\Debug\net6.0\Solid.Core.runtimeconfig.json
+C:\Users\USER\Desktop\.net\bank\Solid.Core\bin\Debug\net6.0\Solid.Core.dll
+C:\Users\USER\Desktop\.net\bank\Solid.Core\bin\Debug\net6.0\Solid.Core.pdb
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.AssemblyInfoInputs.cache
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.AssemblyInfo.cs
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.csproj.CoreCompileInputs.cache
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.dll
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\refint\Solid.Core.dll
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.pdb
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\Solid.Core.genruntimeconfig.cache
+C:\Users\USER\Desktop\.net\bank\Solid.Core\obj\Debug\net6.0\ref\Solid.Core.dll

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Solid.Core.Enteties;
+using Solid.Core.Services;
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,58 +11,44 @@ namespace bank.Controllers
     [ApiController]
     public class Customers : ControllerBase
     {
-        private readonly DataContext _dataContext;
-        public Customers(DataContext context)
+        private readonly ICustomerService _customerService;
+        public Customers(ICustomerService customerService)
         {
-            _dataContext = context;
+            _customerService = customerService;
         }
         // GET: api/<Customers>
         [HttpGet]
-        public List<Customer> Get()
+        public ActionResult Get()
         {
-            return _dataContext.Customers;
+            return Ok(_customerService.GetCustomers());
         }
 
         // GET api/<Customers>/5
         [HttpGet("{tz}")]
-        public Customer Get(string tz)
+        public ActionResult Get(string tz)
         {
-            Customer c = _dataContext.Customers.Find(x => x.Tz == tz);
-            return c;
+            return Ok(_customerService.GetByTz(tz));
         }
 
         // POST api/<Customers>
         [HttpPost]
         public void Post([FromBody] Customer value)
         {
-            _dataContext.Customers.Add(value);
+            _customerService.AddCustomer(value);
         }
 
         // PUT api/<Customers>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Customer value)
+        public void Put(int id, [FromBody] Customer value)
         {
-            Customer c = _dataContext.Customers.Find(x => x.Id == id);
-            if (c == null)
-            {
-                return NotFound();
-            }
-            c.Tz = value.Tz;
-            c.Name = value.Name;
-            return Ok(c);
+            _customerService.UpdateCustomer(id, value);
         }
 
         // DELETE api/<Customers>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public void Delete(int id)
         {
-            Customer c = _dataContext.Customers.Find(x => x.Id == id);
-            if (c == null)
-            {
-                return NotFound(id);
-            }
-            _dataContext.Customers.Remove(c);
-            return Ok(c);
+            _customerService.DeleteCustomer(id);
         }
     }
 }
