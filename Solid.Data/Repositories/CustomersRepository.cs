@@ -24,23 +24,23 @@ namespace Solid.Data.Repositories
 
         public void DeleteCustomer(int id)
         {
-            var temp = _context.Customers.Find(x => x.Id == id);
+            var temp = _context.Customers.ToList().Find(x => x.Id == id);
             _context.Customers.Remove(temp);
         }
 
         public List<Customer> GetCustomers()
         {
-            return _context.Customers;
+            return _context.Customers.ToList();
         }
 
         public Customer GetByTz(string tz)
         {
-            return _context.Customers.Find(u => u.Tz == tz);
+            return _context.Customers.ToList().Find(u => u.Tz == tz);
         }
 
         public Customer UpdateCustomer(int id, Customer cust)
         {
-            var temp = _context.Customers.Find(u => u.Id == id);
+            var temp = _context.Customers.ToList().Find(u => u.Id == id);
             if(temp != null)
             {
                temp.Id = cust.Id;

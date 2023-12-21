@@ -24,23 +24,23 @@ namespace Solid.Data.Repositories
 
         public void DeleteTurn(int id)
         {
-            var temp = _context.Turns.Find(x => x.Id == id);
+            var temp = _context.Turns.ToList().Find(x => x.Id == id);
             _context.Turns.Remove(temp);
         }
 
         public List<Turn> GetTurns()
         {
-            return _context.Turns;
+            return _context.Turns.ToList();
         }
 
         public Turn GetByStart(DateTime start)
         {
-            return _context.Turns.Find(u => u.Start.Month == start.Month);
+            return _context.Turns.ToList().Find(u => u.Start.Month == start.Month);
         }
 
         public Turn UpdateTurn(int id, Turn turn)
         {
-            var temp = _context.Turns.Find(u => u.Id == id);
+            var temp = _context.Turns.ToList().Find(u => u.Id == id);
             if(temp != null)
             {
                 temp.Id = id;

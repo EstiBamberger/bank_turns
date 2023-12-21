@@ -24,23 +24,23 @@ namespace Solid.Data.Repositories
 
         public void DeleteOfficial(int id)
         {
-            var temp = _context.Officials.Find(x => x.Id == id);
+            var temp = _context.Officials.ToList().Find(x => x.Id == id);
             _context.Officials.Remove(temp);
         }
 
         public List<Official> GetOfficials()
         {
-            return _context.Officials;
+            return _context.Officials.ToList();
         }
 
         public Official GetById(int id)
         {
-            return _context.Officials.Find(u => u.Id == id);
+            return _context.Officials.ToList().Find(u => u.Id == id);
         }
 
         public Official UpdateOfficial(int id, Official official)
         {
-            var temp = _context.Officials.Find(u => u.Id == id);
+            var temp = _context.Officials.ToList().Find(u => u.Id == id);
             if(temp != null)
             {
                 temp.Id = id;

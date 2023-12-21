@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<DataContext>();
+builder.Services.AddDbContext<DataContext>();
 builder.Services.AddScoped<ICustomerRepositories, CustomersRepository>();
 builder.Services.AddScoped<IOfficialsRepositories, OfficialsRepository>();
 builder.Services.AddScoped<ITurnsRepositories, TurnsRepository>();

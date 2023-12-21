@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v3d8JeLFMCQ2CFtZxwpEQ/4xDhlLNT56Djw7WkxYAunLVqnGBIlurzcvPHspcRYSsIRqbUkSxyv2j2kR8kLqhQ==",
+  "dgSpecHash": "f/84kdIBV4xOZB8gZaIbCoDqmmW/VuyTmBDIRLUEIRppRAy2rzLa5FKdSI41AtT3XHGMCpIq4qPyPYNJvxCljw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\Desktop\\.net\\bank\\Solid.Service\\Solid.Service.csproj",
+  "projectFilePath": "C:\\Users\\USER\\Desktop\\.net\\bank\\bank_turns\\Solid.Service\\Solid.Service.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
